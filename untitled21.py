@@ -39,26 +39,39 @@ def calculate_compression_rate(input_str, encoded_str):
     return original_size, compressed_size, compression_rate
 
 # Streamlit アプリケーションの UI
-st.title('ランレングス圧縮ツール')
+st.title('📦 ランレングス圧縮ツール')
 
-input_str = st.text_input('半角アルファベットを入力してください')
+# 入力
+input_str = st.text_input('✏️ 半角アルファベットを入力してください:')
 
 if input_str:
     # 圧縮処理
     encoded_str, encoded_data = run_length_encoding(input_str)
     original_size, compressed_size, compression_rate = calculate_compression_rate(input_str, encoded_str)
 
-    st.write(f'入力データ: {input_str}')
-    st.write(f'ランレングス圧縮後のデータ: {encoded_str}')
-    st.write(f'元のデータのサイズ: {original_size} バイト')
-    st.write(f'圧縮後のデータのサイズ: {compressed_size} バイト')
-    st.write(f'圧縮率: {compression_rate:.2f}%')
+    # 元のデータ
+    st.header('🗃️ 元のデータ')
+    st.info(f'入力データ: **{input_str}**')
+    st.write(f'元のデータのサイズ: **{original_size} バイト**')
 
-    st.write("圧縮後のデータ:")
-    for char, count in encoded_data:
-        st.write(f'文字: {char}, 出現回数: {count}')
+    # 圧縮後のデータ
+    st.header('🔧 圧縮後のデータ')
+    st.success(f'ランレングス圧縮後のデータ: **{encoded_str}**')
+    st.write(f'圧縮後のデータのサイズ: **{compressed_size} バイト**')
 
-    st.write("\n圧縮率の計算過程:")
-    st.write(f'圧縮率 = (元のサイズ - 圧縮後のサイズ) / 元のサイズ * 100')
-    st.write(f'圧縮率 = ({original_size} - {compressed_size}) / {original_size} * 100')
-    st.write(f'圧縮率 = {compression_rate:.2f}%')
+    # 圧縮率
+    st.header('📉 圧縮率の結果')
+    st.latex(r'''
+    圧縮率 = \frac{{\text{{元のサイズ}} - \text{{圧縮後のサイズ}}}}{{\text{{元のサイズ}}}} \times 100
+    ''')
+    st.latex(rf'''
+    圧縮率 = \frac{{{original_size} - {compressed_size}}}{{{original_size}}} \times 100 = {compression_rate:.2f}\%
+    ''')
+    st.warning(f'圧縮率: **{compression_rate:.2f}%**')
+
+    # 圧縮後のデータ詳細
+    st.header('🔍 圧縮後のデータ詳細')
+    st.table([{'文字': char, '出現回数': count} for char, count in encoded_data])
+
+    # 注意事項
+    st.caption('※ 半角アルファベット以外の入力は無視されます。')
