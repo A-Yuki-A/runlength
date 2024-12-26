@@ -43,19 +43,19 @@ st.markdown("""
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            font-size: 16px;
+            font-size: 11px;
         }
         .stButton>button {
-            font-size: 16px;
+            font-size: 11px;
         }
         .stTextInput>div>input {
-            font-size: 16px;
+            font-size: 11px;
         }
         .stTextArea>div>textarea {
-            font-size: 16px;
+            font-size: 11px;
         }
         .stMarkdown {
-            font-size: 16px;
+            font-size: 11px;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -104,10 +104,10 @@ if input_str:
 st.header('❓ ランレングス圧縮に最適なデータはどれか選んでください')
 
 options = {
-    "1. AAAABBBCCCC": "最適なデータです。繰り返しのパターンがあるので圧縮効果が高いです。",
-    "2. ABCDEFGH": "最適ではありません。異なる文字が多いため圧縮効果は低いです。",
-    "3. AAAAAAA": "最適なデータです。単一の文字が繰り返されているため圧縮効果が非常に高いです。",
-    "4. AABBBCCCCCC": "比較的最適なデータです。繰り返しが多く、圧縮効果がある程度高いです。"
+    "1. ABCDEFGH": "最適ではありません。異なる文字が多いため圧縮効果は低いです。",
+    "2. ABABABAB": "最適ではありません。繰り返しのパターンがあるが、長さが少ないため圧縮効果が低いです。",
+    "3. AAAABBBCCCC": "最適なデータです。繰り返しのパターンがあるので圧縮効果が高いです。",
+    "4. ABCCBAABC": "最適ではありません。繰り返しが少なく、圧縮効果が低いです。"
 }
 
 # 選択肢を表示
@@ -121,7 +121,7 @@ submit_button = st.button(label='送信')
 
 # 正誤判定と解説
 if submit_button:
-    correct_answer = "3. AAAAAAA"
+    correct_answer = "3. AAAABBBCCCC"
     if choice == correct_answer:
         st.success(f'✅ 正解！圧縮に最適なデータは `{correct_answer}` です。')
     else:
@@ -134,7 +134,7 @@ if submit_button:
     st.write("""
     ランレングス圧縮は、データに繰り返しのパターンがある場合に非常に効果的です。特に、同じ文字が連続して現れる場合に最適です。
 
-    - **最適なデータ**は、繰り返しの文字列（例：`AAAAAAA`）です。このようなデータは圧縮されるサイズが小さくなり、圧縮率が非常に高くなります。
-    - **圧縮効果が低いデータ**は、異なる文字が多く含まれるデータ（例：`ABCDEFGH`）です。この場合、各文字が個別に現れるため、圧縮率は低くなります。
+    - **最適なデータ**は、繰り返しの文字列（例：`AAAABBBCCCC`）です。このようなデータは圧縮されるサイズが小さくなり、圧縮率が非常に高くなります。
+    - **圧縮効果が低いデータ**は、異なる文字が多く含まれるデータ（例：`ABABABAB` や `ABCCBAABC`）です。この場合、各文字が個別に現れるため、圧縮率は低くなります。
     """)
 
