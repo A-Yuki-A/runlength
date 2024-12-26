@@ -38,27 +38,9 @@ def calculate_compression_rate(input_str, encoded_str):
     compression_rate = (1 - compressed_size / original_size) * 100
     return original_size, compressed_size, compression_rate
 
-# カスタムCSSを使用してフォントサイズを変更
-st.markdown("""
-    <style>
-        body {
-            font-size: 11px;
-        }
-        .block-container {
-            font-size: 11px;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-size: 11px;
-        }
-        .css-1d391kg {
-            font-size: 11px;
-        }
-    </style>
-""", unsafe_allow_html=True)
-
 # Streamlit アプリケーションの UI
 # タイトル
-st.markdown("<h1>📦 ランレングス圧縮</h1>", unsafe_allow_html=True)
+st.header('📦 ランレングス圧縮')
 
 # 入力例を追加
 st.markdown("### 例: `AAABBBCCCDDD` のように、半角アルファベットを入力してください。")
