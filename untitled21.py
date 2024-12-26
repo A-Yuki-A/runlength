@@ -7,62 +7,58 @@ Original file is located at
     https://colab.research.google.com/drive/1TafCF5e3Jzcxi4-WYSNMJpyOjiG0PifD
 """
 
+import streamlit as st
+
 # ランレングス圧縮を行う関数
 def run_length_encoding(input_str):
     encoded_str = ''
     count = 1
-    # 圧縮後のデータ数を格納するリスト
     encoded_data = []
 
-    # 文字列が空でないことを確認
     if len(input_str) == 0:
         return encoded_str, encoded_data
 
-    # 入力文字列を順に圧縮
     for i in range(1, len(input_str)):
         if input_str[i] == input_str[i - 1]:
             count += 1
         else:
             encoded_str += input_str[i - 1] + str(count)
-            encoded_data.append((input_str[i - 1], count))  # 圧縮データを追加
+            encoded_data.append((input_str[i - 1], count))
             count = 1
 
-    # 最後の文字を追加
     encoded_str += input_str[-1] + str(count)
-    encoded_data.append((input_str[-1], count))  # 最後のデータを追加
+    encoded_data.append((input_str[-1], count))
 
     return encoded_str, encoded_data
 
 # 圧縮率を求める関数
 def calculate_compression_rate(input_str, encoded_str):
-    original_size = len(input_str)  # 元のサイズ
-    compressed_size = len(encoded_str)  # 圧縮後のサイズ
-    compression_rate = (1 - compressed_size / original_size) * 100  # 圧縮率の計算
-    return original_size, compressed_size, compression_rate  # 詳細情報も返す
+    original_size = len(input_str)
+    compressed_size = len(encoded_str)
+    compression_rate = (1 - compressed_size / original_size) * 100
+    return original_size, compressed_size, compression_rate
 
-# 入力を受け取る
-input_str = input('半角アルファベットを入力してください: ')
+# Streamlit アプリケーションの UI
+st.title('ランレングス圧縮ツール')
 
-# ランレングス圧縮を実行
-encoded_str, encoded_data = run_length_encoding(input_str)
+input_str = st.text_input('半角アルファベットを入力してください')
 
-# 圧縮率を計算
-original_size, compressed_size, compression_rate = calculate_compression_rate(input_str, encoded_str)
+if input_str:
+    # 圧縮処理
+    encoded_str, encoded_data = run_length_encoding(input_str)
+    original_size, compressed_size, compression_rate = calculate_compression_rate(input_str, encoded_str)
 
-# 結果を表示
-print(f'入力データ: {input_str}')
-print(f'ランレングス圧縮後のデータ: {encoded_str}')
-print(f'元のデータのサイズ: {original_size} バイト')
-print(f'圧縮後のデータのサイズ: {compressed_size} バイト')
-print(f'圧縮率: {compression_rate:.2f}%')
+    st.write(f'入力データ: {input_str}')
+    st.write(f'ランレングス圧縮後のデータ: {encoded_str}')
+    st.write(f'元のデータのサイズ: {original_size} バイト')
+    st.write(f'圧縮後のデータのサイズ: {compressed_size} バイト')
+    st.write(f'圧縮率: {compression_rate:.2f}%')
 
-# 圧縮後のデータ数を表示
-print("\n圧縮後のデータ:")
-for char, count in encoded_data:
-    print(f'文字: {char}, 出現回数: {count}')
+    st.write("圧縮後のデータ:")
+    for char, count in encoded_data:
+        st.write(f'文字: {char}, 出現回数: {count}')
 
-# 計算過程を表示
-print("\n圧縮率の計算過程:")
-print(f'圧縮率 = (元のサイズ - 圧縮後のサイズ) / 元のサイズ * 100')
-print(f'圧縮率 = ({original_size} - {compressed_size}) / {original_size} * 100')
-print(f'圧縮率 = {compression_rate:.2f}%')
+    st.write("\n圧縮率の計算過程:")
+    st.write(f'圧縮率 = (元のサイズ - 圧縮後のサイズ) / 元のサイズ * 100')
+    st.write(f'圧縮率 = ({original_size} - {compressed_size}) / {original_size} * 100')
+    st.write(f'圧縮率 = {compression_rate:.2f}%')
