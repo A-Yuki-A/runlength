@@ -58,7 +58,7 @@ st.markdown("""
             font-size: 11px;
         }
         .stHeader {
-            font-size: 13px;
+            font-size: 11px;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -113,7 +113,7 @@ options = {
 
 # 選択肢を表示
 choice = st.radio(
-    "圧縮に最適なデータを選んでください",
+    "問題：圧縮に最適なデータを選んでください",
     list(options.keys())
 )
 
