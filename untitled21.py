@@ -55,10 +55,19 @@ st.markdown("""
             font-size: 11px;
         }
         .stMarkdown {
-            font-size: 10px;
+            font-size: 11px;
         }
         .stHeader {
-            font-size: 10px;
+            font-size: 11px;
+        }
+        .stSubheader {
+            font-size: 11px;
+        }
+        .stCaption {
+            font-size: 11px;
+        }
+        .stLabel {
+            font-size: 11px;
         }
     </style>
 """, unsafe_allow_html=True)
