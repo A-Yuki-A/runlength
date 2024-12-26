@@ -39,7 +39,31 @@ def calculate_compression_rate(input_str, encoded_str):
     return original_size, compressed_size, compression_rate
 
 # Streamlit アプリケーションの UI
+st.markdown("""
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+        }
+        .stButton>button {
+            font-size: 16px;
+        }
+        .stTextInput>div>input {
+            font-size: 16px;
+        }
+        .stTextArea>div>textarea {
+            font-size: 16px;
+        }
+        .stMarkdown {
+            font-size: 16px;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 st.title('📦 ランレングス圧縮ツール')
+
+# 入力例を追加
+st.markdown("### 例: `AAABBBCCCDDD` のように、半角アルファベットを入力してください。")
 
 # 入力
 input_str = st.text_input('✏️ 半角アルファベットを入力してください:')
@@ -75,3 +99,34 @@ if input_str:
 
     # 注意事項
     st.caption('※ 半角アルファベット以外の入力は無視されます。')
+
+# 問題と選択肢
+st.header('❓ ランレングス圧縮に最適なデータはどれか選んでください')
+
+options = {
+    "AAAABBBCCCC": "最適なデータです。繰り返しのパターンがあるので圧縮効果が高いです。",
+    "ABCDEFGH": "最適ではありません。異なる文字が多いため圧縮効果は低いです。",
+    "AAAAAAA": "最適なデータです。単一の文字が繰り返されているため圧縮効果が非常に高いです。",
+    "AABBBCCCCCC": "比較的最適なデータです。繰り返しが多く、圧縮効果がある程度高いです。"
+}
+
+# 選択肢を表示
+choice = st.radio(
+    "圧縮に最適なデータを選んでください",
+    list(options.keys())
+)
+
+# 送信ボタン
+submit_button = st.button(label='送信')
+
+# 正誤判定と解説
+if submit_button:
+    correct_answer = "AAAAAAA"
+    if choice == correct_answer:
+        st.success(f'✅ 正解！圧縮に最適なデータは `{correct_answer}` です。')
+    else:
+        st.error(f'❌ 不正解！正解は `{correct_answer}` です。')
+
+    # 解説
+    st.subheader('🔍 解説')
+    st.write(options[correct_answer])
