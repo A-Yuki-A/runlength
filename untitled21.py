@@ -39,41 +39,8 @@ def calculate_compression_rate(input_str, encoded_str):
     return original_size, compressed_size, compression_rate
 
 # Streamlit アプリケーションの UI
-st.markdown("""
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            font-size: 11px;
-        }
-        .stButton>button {
-            font-size: 11px;
-        }
-        .stTextInput>div>input {
-            font-size: 11px;
-        }
-        .stTextArea>div>textarea {
-            font-size: 11px;
-        }
-        .stMarkdown {
-            font-size: 11px;
-        }
-        .stHeader, .stTitle {
-            font-size: 11px;
-        }
-        .stSubheader {
-            font-size: 11px;
-        }
-        .stCaption {
-            font-size: 11px;
-        }
-        .stLabel {
-            font-size: 11px;
-        }
-    </style>
-""", unsafe_allow_html=True)
-
 # タイトル
-st.markdown("<h1 style='font-size: 11px;'>📦 ランレングス圧縮</h1>", unsafe_allow_html=True)
+st.markdown("<h1>📦 ランレングス圧縮</h1>", unsafe_allow_html=True)
 
 # 入力例を追加
 st.markdown("### 例: `AAABBBCCCDDD` のように、半角アルファベットを入力してください。")
@@ -123,7 +90,7 @@ options = {
 
 # 選択肢を表示
 choice = st.radio(
-    "圧縮に最適なデータを選んでください",
+    "練習問題：圧縮に最適なデータを選んでください",
     list(options.keys())
 )
 
