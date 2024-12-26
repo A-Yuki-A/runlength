@@ -57,7 +57,7 @@ st.markdown("""
         .stMarkdown {
             font-size: 11px;
         }
-        .stHeader {
+        .stHeader, .stTitle {
             font-size: 11px;
         }
         .stSubheader {
@@ -72,7 +72,8 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.title('📦 ランレングス圧縮ツール')
+# タイトル
+st.markdown("<h1 style='font-size: 11px;'>📦 ランレングス圧縮</h1>", unsafe_allow_html=True)
 
 # 入力例を追加
 st.markdown("### 例: `AAABBBCCCDDD` のように、半角アルファベットを入力してください。")
