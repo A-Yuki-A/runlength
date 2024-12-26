@@ -58,12 +58,12 @@ st.markdown("""
             font-size: 11px;
         }
         .stHeader {
-            font-size: 11px;
+            font-size: 13px;
         }
     </style>
 """, unsafe_allow_html=True)
 
-st.title('📦 ランレングス圧縮')
+st.title('📦 ランレングス圧縮ツール')
 
 # 入力例を追加
 st.markdown("### 例: `AAABBBCCCDDD` のように、半角アルファベットを入力してください。")
@@ -113,7 +113,7 @@ options = {
 
 # 選択肢を表示
 choice = st.radio(
-    "問題：圧縮に最適なデータを選んでください",
+    "圧縮に最適なデータを選んでください",
     list(options.keys())
 )
 
