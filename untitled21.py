@@ -7,6 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1TafCF5e3Jzcxi4-WYSNMJpyOjiG0PifD
 """
 
+import streamlit as st
+
 # ランレングス圧縮を行う関数
 def run_length_encoding(input_str):
     encoded_str = ''
