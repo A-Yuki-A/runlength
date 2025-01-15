@@ -7,8 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1TafCF5e3Jzcxi4-WYSNMJpyOjiG0PifD
 """
 
-import streamlit as st
-
 # ランレングス圧縮を行う関数
 def run_length_encoding(input_str):
     encoded_str = ''
@@ -115,4 +113,3 @@ if submit_button:
     - **最適なデータ**は、繰り返しの文字列（例：`AAAABBBCCCC`）です。このようなデータは圧縮されるサイズが小さくなり、圧縮率が非常に高くなります。
     - **圧縮効果が低いデータ**は、異なる文字が多く含まれるデータ（例：`ABABABAB` や `ABCCBAABC`）です。この場合、各文字が個別に現れるため、圧縮率は低くなります。
     """)
-
